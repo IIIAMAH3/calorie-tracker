@@ -13,4 +13,6 @@ def index(request):
 
     else:
         foods = Food.objects.all()
-    return render(request, "tracker/index.html", {"foods": foods})
+
+    consumed_food = Consume.objects.filter(user=request.user)
+    return render(request, "tracker/index.html", {"foods": foods, "consumed_food": consumed_food})
