@@ -50,9 +50,41 @@
                             <td class="text-center">{{ c.food_consumed.calories }}</td>
                         </tr>
                         {% endfor %}
+
+                        <tr class="table-info">
+                            <td id="name"><b>Total</b></td>
+                            <td id="total_carbs" class="text-center"><b></b></td>
+                            <td id="total_protein" class="text-center"><b></b></td>
+                            <td id="total_fats" class="text-center"><b></b></td>
+                            <td id="total_calories" class="text-center"><b></b></td>
+
+                        </tr>
                     </table>
                 </div>
             </div>
         </div>
     </body>
+<script>
+    let table = document.getElementById("table");
+    let carbs = 0, protein = 0, fats = 0, calories = 0;
+    for(let i=1; i<table.rows.length-1; i++)
+    {
+        console.log(table.rows[i].cells[1].innerHTML);
+        carbs += parseFloat(table.rows[i].cells[1].innerHTML);
+        protein += parseFloat(table.rows[i].cells[2].innerHTML);
+        fats += parseFloat(table.rows[i].cells[3].innerHTML);
+        calories += parseFloat(table.rows[i].cells[4].innerHTML);
+    }
+
+    carbs = carbs.toFixed(1);
+    protein = protein.toFixed(1);
+    fats = fats.toFixed(1);
+    calories = calories.toFixed(1);
+
+    document.getElementById("total_carbs").innerHTML = carbs;
+    document.getElementById("total_protein").innerHTML = protein;
+    document.getElementById("total_fats").innerHTML = fats;
+    document.getElementById("total_calories").innerHTML = calories;
+
+</script>
 </html>
