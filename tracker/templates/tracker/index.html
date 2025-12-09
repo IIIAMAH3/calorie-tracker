@@ -10,7 +10,7 @@
                     <form method="POST">
                         <div class="form-group row">
                             {% csrf_token %}
-                            <label class="col-form-label">
+                            <label class="col-form-label" for="food_consumed">
                                 <b>Select Food to Add</b>
                             </label>
                             <select class="form-control md-5" name="food_consumed" id="food_consumed">
@@ -25,12 +25,34 @@
                     </form>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div>
+                        <h4>Today's Consumption</h4>
+                    </div>
+
+                    <table id="table" class="table table-hover">
+                        <tr class="table table-primary">
+                            <th style="padding-right: 10px">Food item</th>
+                            <th>Carbs(g)</th>
+                            <th>Protein(g)</th>
+                            <th>Fats(g)</th>
+                            <th>Calories(kcal)</th>
+                        </tr>
+
+                        {% for c in consumed_food %}
+                        <tr class="table-info">
+                            <td class="text-center">{{ c.food_consumed.name }}</td>
+                            <td class="text-center">{{ c.food_consumed.carbs }}</td>
+                            <td class="text-center">{{ c.food_consumed.protein }}</td>
+                            <td class="text-center">{{ c.food_consumed.fats }}</td>
+                            <td class="text-center">{{ c.food_consumed.calories }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
         </div>
-
-
-        {% for c in consumed_food %}
-            {{ c.food_consumed.name }} --> {{ c.food_consumed.carbs }} --> {{ c.food_consumed.protein }} --> {{ c.food_consumed.fats }} --> {{ c.food_consumed.calories }}
-            <br>
-        {% endfor %}
     </body>
 </html>
