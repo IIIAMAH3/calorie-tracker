@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <nav class="navbar navbar-dark bg-primary">
-                        <span class="navbar-brand">Calorie Tracker</span>
+                        <span class="navbar-brand mb-0 h1 fs-2 ps-4">Calorie Tracker</span>
                     </nav>
                 </div>
             </div>
@@ -59,6 +59,7 @@
                             <th>Protein(g)</th>
                             <th>Fats(g)</th>
                             <th>Calories(kcal)</th>
+                            <th>Remove item</th>
                         </tr>
 
                         {% for c in consumed_food %}
@@ -68,6 +69,7 @@
                             <td class="text-center">{{ c.food_consumed.protein }}</td>
                             <td class="text-center">{{ c.food_consumed.fats }}</td>
                             <td class="text-center">{{ c.food_consumed.calories }}</td>
+                            <td><a class="btn btn-danger" href="{% url 'delete' c.id %}">Remove</a></td>
                         </tr>
                         {% endfor %}
 
